@@ -1,1 +1,11 @@
-hehehe
+
+###
+POST http://localhost:3003/user/signup 
+Content-Type: application/json
+
+{
+    "name": "Max",
+    "email": "max@hotmail.com",
+    "password": "654321",
+    "role": "normal"
+}
