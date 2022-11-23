@@ -9,3 +9,13 @@ Content-Type: application/json
     "password": "654321",
     "role": "normal"
 }
+
+###
+POST http://localhost:3003/band/create
+Content-Type: application/json
+
+{
+    "name": "Coldplay",
+    "musicGenre": "samba",
+    "responsible": "joao"
+}
