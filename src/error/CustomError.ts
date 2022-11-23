@@ -61,5 +61,9 @@ export class FullSchedule extends CustomError {
     super(400, "Horário já agendado, tente outro horário!");
   }
 }
-
+export class InvalidLogin extends CustomError {
+  constructor() {
+    super(400, "Usuário não encontrado !");
+  }
+}
 

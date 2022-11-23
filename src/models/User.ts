@@ -18,6 +18,11 @@ export enum UserRole {
     ADMIN = "ADMIN",
 }
 
+export interface LoginInputDTO{
+    email: string;
+    password: string;
+}
+
 export type AuthenticationData = {
     id: string;
 }
