@@ -84,13 +84,15 @@ export class InvalidToken extends CustomError {
 export class InvalidAuthenticatorData extends CustomError {
   constructor() {
     super(400, "Autenticador inválido!");
+  }
+}
+    
 
 export class InvalidLogin extends CustomError {
   constructor() {
     super(400, "Usuário não encontrado !");
   }
 }
-
 
 export class DuplicatedBand extends CustomError {
   constructor() {
