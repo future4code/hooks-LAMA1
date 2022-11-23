@@ -4,10 +4,10 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-    "name": "Bento",
-    "email": "bento@hotmail.com",
+    "name": "Pedro",
+    "email": "pedros@hotmail.com",
     "password": "123456",
-    "role": "ADMIN"
+    "role": "admin"
 }
 
 ###
@@ -25,7 +25,7 @@ Content-Type: application/json
 {
     "name": "Claudinha",
     "musicGenre": "samba",
-    "responsible": "Teste"
+    "responsible": "Cleito"
 }
 
 
