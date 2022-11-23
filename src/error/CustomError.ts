@@ -27,6 +27,18 @@ export class InvalidPassword extends CustomError {
   }
 }
 
+export class InvalidGenre extends CustomError {
+  constructor() {
+    super(400, "Gênero inválido");
+  }
+}
+
+export class InvalidResponsible extends CustomError {
+  constructor() {
+    super(400, "Responsável inválido");
+  }
+}
+
 export class InvalidRole extends CustomError {
   constructor() {
     super(400, "Tipo de usuário inválido, escolha entre'NORMAL' e 'ADMIN' ");
@@ -62,6 +74,7 @@ export class FullSchedule extends CustomError {
   }
 }
 
+
 export class InvalidToken extends CustomError {
   constructor() {
     super(400, "Token inválido!");
@@ -71,6 +84,24 @@ export class InvalidToken extends CustomError {
 export class InvalidAuthenticatorData extends CustomError {
   constructor() {
     super(400, "Autenticador inválido!");
+
+export class InvalidLogin extends CustomError {
+  constructor() {
+    super(400, "Usuário não encontrado !");
+  }
+}
+
+
+export class DuplicatedBand extends CustomError {
+  constructor() {
+    super(400, "Nome de banda já cadastrada.");
+  }
+}
+
+export class NotAdmin extends CustomError {
+  constructor() {
+    super(400, "Você precisar ser adiministrador para cadastrar uma banda.");
+
   }
 }
 
