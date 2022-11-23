@@ -10,6 +10,7 @@ Content-Type: application/json
     "role": "normal"
 }
 
+
 ###
 POST http://localhost:3003/band/create
 Content-Type: application/json
@@ -19,3 +20,21 @@ Content-Type: application/json
     "musicGenre": "samba",
     "responsible": "joao"
 }
+
+
+// Requests de Show
+
+###
+POST http://localhost:3003/show/create
+Content-Type: application/json
+
+{
+    "weekDay" : "SEXTA", 
+    "startTime" : 10, 
+    "endTime" : 22, 
+    "bandId" : 2
+}
+
+###
+GET http://localhost:3003/show/get/SEGUNDA
+
