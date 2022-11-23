@@ -9,3 +9,20 @@ Content-Type: application/json
     "password": "654321",
     "role": "normal"
 }
+
+
+// Requests de Show
+
+###
+POST http://localhost:3003/show/create
+Content-Type: application/json
+
+{
+    "weekDay" : "SEXTA", 
+    "startTime" : 10, 
+    "endTime" : 22, 
+    "bandId" : 2
+}
+
+###
+GET http://localhost:3003/show/get/SEGUNDA
