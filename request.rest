@@ -4,6 +4,9 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
+    "name": "Diogo",
+    "email": "diogo@hotmail.com",
+
 
     "name": "Teste",
     "email": "teste@hotmail.com",
@@ -40,6 +43,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:3003/show/create
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjRjYzU1MjE2LWVjMDEtNDM3MC05NzI5LWZmMjA0NmFkMWEyMSJ9LCJpYXQiOjE2NjkyMjQxMjYsImV4cCI6MTY2OTIyNzcyNn0.qnQMqVuvXBjMGPmaQg56zltj_HRov1omjcQGQZIXXOc
 Content-Type: application/json
 
 {
@@ -50,5 +54,6 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3003/show/get/SEGUNDA
+GET http://localhost:3003/show/get/SEXTA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjRjYzU1MjE2LWVjMDEtNDM3MC05NzI5LWZmMjA0NmFkMWEyMSJ9LCJpYXQiOjE2NjkyMjQxMjYsImV4cCI6MTY2OTIyNzcyNn0.qnQMqVuvXBjMGPmaQg56zltj_HRov1omjcQGQZIXXOc
 

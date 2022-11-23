@@ -74,6 +74,17 @@ export class FullSchedule extends CustomError {
   }
 }
 
+
+export class InvalidToken extends CustomError {
+  constructor() {
+    super(400, "Token inválido!");
+  }
+}
+
+export class InvalidAuthenticatorData extends CustomError {
+  constructor() {
+    super(400, "Autenticador inválido!");
+
 export class InvalidLogin extends CustomError {
   constructor() {
     super(400, "Usuário não encontrado !");
@@ -90,6 +101,7 @@ export class DuplicatedBand extends CustomError {
 export class NotAdmin extends CustomError {
   constructor() {
     super(400, "Você precisar ser adiministrador para cadastrar uma banda.");
+
   }
 }
 
