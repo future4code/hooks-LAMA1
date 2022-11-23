@@ -1,4 +1,4 @@
--- Active: 1667949640462@@35.226.146.116@3306@hooks-4313149-adriane-goncalves
+-- Active: 1669090468741@@35.226.146.116@3306@hooks-4313149-adriane-goncalves
 CREATE TABLE IF NOT EXISTS Lama_bands (
   id VARCHAR(255) PRIMARY KEY,
   name VARCHAR(255) UNIQUE NOT NULL,
