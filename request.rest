@@ -4,10 +4,17 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
+
     "name": "Teste",
     "email": "teste@hotmail.com",
     "password": "123456",
     "role": "normal"
+
+    "name": "Bento",
+    "email": "bento@hotmail.com",
+    "password": "123456",
+    "role": "ADMIN"
+
 }
 
 ###
@@ -23,9 +30,9 @@ POST http://localhost:3003/band/create
 Content-Type: application/json
 
 {
-    "name": "Coldplay",
+    "name": "Claudinha",
     "musicGenre": "samba",
-    "responsible": "joao"
+    "responsible": "Teste"
 }
 
 

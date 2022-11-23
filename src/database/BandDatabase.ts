@@ -10,4 +10,17 @@ export class bandDatabase extends BaseDatabase {
       responsible: band.responsible,
     });
   }
+
+  public async checkDuplicateBands() {
+    const result = await BaseDatabase.connection("Lama_bands")
+      .select()
+      return result
+  }
+
+  public async checkUserRole(responsible: string) {
+    const result = await BaseDatabase.connection("Lama_users")
+      .select()
+      .where({name: responsible})
+      return result[0]
+  }
 }

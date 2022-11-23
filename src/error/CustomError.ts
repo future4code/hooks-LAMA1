@@ -27,6 +27,18 @@ export class InvalidPassword extends CustomError {
   }
 }
 
+export class InvalidGenre extends CustomError {
+  constructor() {
+    super(400, "Gênero inválido");
+  }
+}
+
+export class InvalidResponsible extends CustomError {
+  constructor() {
+    super(400, "Responsável inválido");
+  }
+}
+
 export class InvalidRole extends CustomError {
   constructor() {
     super(400, "Tipo de usuário inválido, escolha entre'NORMAL' e 'ADMIN' ");
@@ -61,9 +73,26 @@ export class FullSchedule extends CustomError {
     super(400, "Horário já agendado, tente outro horário!");
   }
 }
+
 export class InvalidLogin extends CustomError {
   constructor() {
     super(400, "Usuário não encontrado !");
   }
 }
+
+
+export class DuplicatedBand extends CustomError {
+  constructor() {
+    super(400, "Nome de banda já cadastrada.");
+  }
+}
+
+export class NotAdmin extends CustomError {
+  constructor() {
+    super(400, "Você precisar ser adiministrador para cadastrar uma banda.");
+  }
+}
+
+
+
 
