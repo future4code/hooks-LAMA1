@@ -1,4 +1,4 @@
-import { user } from "../models/User";
+import { LoginInputDTO, user } from "../models/User";
 import BaseDatabase from "./BaseDatabase";
 
 export class UserDatabase extends BaseDatabase {
@@ -9,5 +9,12 @@ export class UserDatabase extends BaseDatabase {
       email: user.email,
       password: user.password,
     });
+  }
+
+  public async login(email: string) {
+    const result = await BaseDatabase.connection("Lama_users")
+    .select() 
+    .where({email});
+    return result[0]
   }
 }

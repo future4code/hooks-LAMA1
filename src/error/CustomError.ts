@@ -74,6 +74,13 @@ export class FullSchedule extends CustomError {
   }
 }
 
+export class InvalidLogin extends CustomError {
+  constructor() {
+    super(400, "Usuário não encontrado !");
+  }
+}
+
+
 export class DuplicatedBand extends CustomError {
   constructor() {
     super(400, "Nome de banda já cadastrada.");
@@ -85,6 +92,7 @@ export class NotAdmin extends CustomError {
     super(400, "Você precisar ser adiministrador para cadastrar uma banda.");
   }
 }
+
 
 
 
