@@ -1,22 +1,36 @@
-import { ShowDatabase } from "../database/ShowDatabase";
+import { ShowDatabase } from "../../database/ShowDatabase";
 import {
   CustomError,
   FullSchedule,
+  InvalidAuthenticatorData,
   InvalidDay,
   InvalidEndTime,
   InvalidInfos,
   InvalidStartTime,
   InvalidTime,
-} from "../error/CustomError";
-import { Show, ShowDTO } from "../models/Show";
-import { IdGenerator } from "../services/IdGenerator";
+  InvalidToken,
+} from "../../error/CustomError";
+import { Show, ShowDTO } from "../../models/Show";
+import { IdGenerator } from "../../services/IdGenerator";
+import { TokenGenerator } from "../../services/TokenGenerator";
 
 const showDatabase = new ShowDatabase();
+const tokenGenerator = new TokenGenerator();
 
 export class ShowBusiness {
-  async createShow(show: ShowDTO) {
+  public async createShow(show: ShowDTO, token: string) {
     try {
       const { weekDay, startTime, endTime, bandId } = show;
+
+      if (!token) {
+        throw new InvalidToken();
+      }
+
+      const authData = tokenGenerator.getData(token);
+
+      if (!authData.id) {
+        throw new InvalidAuthenticatorData();
+      }
 
       if (!weekDay || !startTime || !endTime || !bandId) {
         throw new InvalidInfos();
@@ -26,7 +40,7 @@ export class ShowBusiness {
 
       if (
         weekUpper !== "SEXTA" &&
-        weekUpper !== "SÁBADO" &&
+        weekUpper !== "SABADO" &&
         weekUpper !== "DOMINGO"
       ) {
         throw new InvalidDay();
@@ -47,8 +61,11 @@ export class ShowBusiness {
       const timeline = await showDatabase.findTimelineByDay(weekDay);
 
       for (let i = 0; i < timeline.length; i++) {
-        if ((timeline[i].week_day === weekDay && timeline[i].start_time === startTime) ||
-          (timeline[i].week_day === weekDay && timeline[i].end_time === endTime)) {
+        if (
+          (timeline[i].week_day === weekDay &&
+            timeline[i].start_time === startTime) ||
+          (timeline[i].week_day === weekDay && timeline[i].end_time === endTime)
+        ) {
           throw new FullSchedule();
         }
       }
@@ -69,8 +86,18 @@ export class ShowBusiness {
     }
   }
 
-  async getShowsByDay(day: string) {
+  public async getShowsByDay(day: string, token: string) {
     try {
+      if (!token) {
+        throw new InvalidToken();
+      }
+
+      const authData = tokenGenerator.getData(token);
+
+      if (!authData.id) {
+        throw new InvalidAuthenticatorData();
+      }
+
       const weekUpper = day.toUpperCase();
 
       if (

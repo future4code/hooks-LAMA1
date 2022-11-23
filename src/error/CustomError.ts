@@ -62,4 +62,18 @@ export class FullSchedule extends CustomError {
   }
 }
 
+export class InvalidToken extends CustomError {
+  constructor() {
+    super(400, "Token inválido!");
+  }
+}
+
+export class InvalidAuthenticatorData extends CustomError {
+  constructor() {
+    super(400, "Autenticador inválido!");
+  }
+}
+
+
+
 
