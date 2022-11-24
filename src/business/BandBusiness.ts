@@ -13,6 +13,8 @@ import { IdGenerator } from "../services/IdGenerator";
 
 const bandDataBase = new bandDatabase();
 
+const idGenerator = new IdGenerator();
+
 export class BandBusiness {
   async registerBand(band: BandDTO) {
     try {
@@ -42,7 +44,7 @@ export class BandBusiness {
         throw new NotAdmin();
       }
 
-      const id: string = IdGenerator();
+      const id: string = idGenerator.generate();
 
       const newBand = {
         id,

@@ -7,5 +7,5 @@ app.use('/user', userRouter)
 
 app.use("/band", bandRouter)
 
-app.use('/show', showRouter)
 
+app.use("/show", showRouter)

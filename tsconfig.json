@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-      "target": "es2021",
-      "module": "commonjs",
-      "sourceMap": true,
-      "outDir": "./build",
-      "rootDir": "./src",
-      "removeComments": true,
-      "noImplicitAny": true,
-      "esModuleInterop": true
+    "target": "es6" ,
+    "module": "commonjs",
+    "outDir": "./build" ,
+    "rootDir": "./" ,
+    "sourceMap": true,
+    "removeComments": true,
+    "esModuleInterop": true ,
+    "forceConsistentCasingInFileNames": true
   }
 }

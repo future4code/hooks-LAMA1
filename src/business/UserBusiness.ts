@@ -16,6 +16,7 @@ const userDataBase = new UserDatabase();
 const tokenGenerator = new TokenGenerator();
 const hashManager = new HashManager();
 
+const idGenerator = new IdGenerator();
 
 export class UserBusiness {
   async signUp(user: UserInputDTO) {
@@ -36,7 +37,7 @@ export class UserBusiness {
         throw new InvalidRole();
       }
 
-      const id: string = IdGenerator();
+      const id: string = idGenerator.generate();
       const hashPassword = await hashManager.hash(password)
 
       const newUser: user = {
