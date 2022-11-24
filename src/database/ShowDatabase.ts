@@ -1,7 +1,9 @@
 import BaseDatabase from "./BaseDatabase";
 import { Show } from "../models/Show";
+import { ShowRepository } from "../business/ShowRepository";
+import { FullSchedule } from "../error/CustomError";
 
-export class ShowDatabase extends BaseDatabase {
+export class ShowDatabase extends BaseDatabase implements ShowRepository {
   public async createShow(show: Show) {
     await BaseDatabase.connection("Lama_shows").insert({
       id: show.id,
@@ -13,12 +15,22 @@ export class ShowDatabase extends BaseDatabase {
   }
 
   // método usado no business para verificar se a agenda está completa
-  public async findTimelineByDay(day: string) {
-    const result = await BaseDatabase.connection("Lama_shows")
+  public async findTimelineByDay(day: string, startTime: number, endTime: number) {
+    const timeline = await BaseDatabase.connection("Lama_shows")
       .select()
       .where({ week_day: day });
 
-    return result;
+    let status = false
+
+      for (let i = 0; i < timeline.length; i++) {
+        if ((timeline[i].week_day === day && timeline[i].start_time === startTime) ||
+            (timeline[i].week_day === day && timeline[i].end_time === endTime)) 
+        {
+          status = true
+        }
+      }
+
+      return status
   }
 
   public async getShowsByDay(day: string) {

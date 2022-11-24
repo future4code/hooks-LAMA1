@@ -1,4 +1,3 @@
-import { ShowDatabase } from "../../database/ShowDatabase";
 import {
   CustomError,
   FullSchedule,
@@ -9,15 +8,18 @@ import {
   InvalidStartTime,
   InvalidTime,
   InvalidToken,
-} from "../../error/CustomError";
-import { Show, ShowDTO } from "../../models/Show";
-import { IdGenerator } from "../../services/IdGenerator";
-import { TokenGenerator } from "../../services/TokenGenerator";
-
-const showDatabase = new ShowDatabase();
-const tokenGenerator = new TokenGenerator();
+} from "../error/CustomError";
+import { Show, ShowDTO } from "../models/Show";
+import { IIdGenerator, ITokenGenerator } from "./Port";
+import { ShowRepository } from "./ShowRepository";
 
 export class ShowBusiness {
+  constructor(
+    private showDatabase: ShowRepository,
+    private idGenerator: IIdGenerator,
+    private tokenGenerator: ITokenGenerator
+  ) {}
+
   public async createShow(show: ShowDTO, token: string) {
     try {
       const { weekDay, startTime, endTime, bandId } = show;
@@ -26,7 +28,7 @@ export class ShowBusiness {
         throw new InvalidToken();
       }
 
-      const authData = tokenGenerator.getData(token);
+      const authData = this.tokenGenerator.getData(token);
 
       if (!authData.id) {
         throw new InvalidAuthenticatorData();
@@ -58,19 +60,13 @@ export class ShowBusiness {
         throw new InvalidTime();
       }
 
-      const timeline = await showDatabase.findTimelineByDay(weekDay);
+      const timeline = await this.showDatabase.findTimelineByDay(weekDay, startTime, endTime);
 
-      for (let i = 0; i < timeline.length; i++) {
-        if (
-          (timeline[i].week_day === weekDay &&
-            timeline[i].start_time === startTime) ||
-          (timeline[i].week_day === weekDay && timeline[i].end_time === endTime)
-        ) {
-          throw new FullSchedule();
-        }
+      if (timeline === true) {
+        throw new FullSchedule();
       }
-
-      const id = IdGenerator();
+   
+      const id = this.idGenerator.generate();
 
       const newShow: Show = {
         id,
@@ -80,7 +76,7 @@ export class ShowBusiness {
         bandId,
       };
 
-      await showDatabase.createShow(newShow);
+      await this.showDatabase.createShow(newShow);
     } catch (error: any) {
       throw new CustomError(400, error.message);
     }
@@ -92,7 +88,7 @@ export class ShowBusiness {
         throw new InvalidToken();
       }
 
-      const authData = tokenGenerator.getData(token);
+      const authData = this.tokenGenerator.getData(token);
 
       if (!authData.id) {
         throw new InvalidAuthenticatorData();
@@ -108,7 +104,7 @@ export class ShowBusiness {
         throw new InvalidDay();
       }
 
-      const result = await showDatabase.getShowsByDay(day);
+      const result = await this.showDatabase.getShowsByDay(day);
       return result;
     } catch (error: any) {
       throw new CustomError(400, error.message);
