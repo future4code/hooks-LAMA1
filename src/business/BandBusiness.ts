@@ -56,4 +56,18 @@ export class BandBusiness {
       throw new CustomError(400, error.message);
     }
   }
+
+  async getBand(name: string) {
+    try {
+      const result = await bandDataBase.getBand(name);
+
+      if (!name) {
+        throw new InvalidName();
+      }
+
+      return result;
+    } catch (error) {
+      throw new CustomError(400, error.message);
+    }
+  }
 }

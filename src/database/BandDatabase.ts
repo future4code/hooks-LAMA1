@@ -1,6 +1,7 @@
 import { Band } from "../models/Bands";
 import BaseDatabase from "./BaseDatabase";
 
+// Método para registrar banda
 export class bandDatabase extends BaseDatabase {
   public async registerBand(band: Band) {
     await BaseDatabase.connection("Lama_bands").insert({
@@ -11,16 +12,25 @@ export class bandDatabase extends BaseDatabase {
     });
   }
 
+  // Método para checar se já existe uma banda com o nome sendo registrado
   public async checkDuplicateBands() {
-    const result = await BaseDatabase.connection("Lama_bands")
-      .select()
-      return result
+    const result = await BaseDatabase.connection("Lama_bands").select();
+    return result;
   }
 
+  // Método para checar se o usuário tentando tentando registrar uma banda é ADMIN
   public async checkUserRole(responsible: string) {
     const result = await BaseDatabase.connection("Lama_users")
       .select()
-      .where({name: responsible})
-      return result[0]
+      .where({ name: responsible });
+    return result[0];
+  }
+
+  // Método para retornar a banda escolhida
+  public async getBand(name: string) {
+    const result = await BaseDatabase.connection("Lama_bands")
+      .select("name", "music_genre", "responsible")
+      .where({ name: "Claudinha" });
+    return result[0];
   }
 }

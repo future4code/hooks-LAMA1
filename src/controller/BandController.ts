@@ -21,4 +21,15 @@ export class BandController {
       response.status(400).send(error.message);
     }
   }
+
+  async getBand(request: Request, response: Response) {
+    try {
+      const bandName = request.body;
+
+      const result = await bandBusiness.getBand(bandName);
+      response.status(200).send({data: result});
+    } catch (error) {
+      response.status(200).send(error.message);
+    }
+  }
 }
