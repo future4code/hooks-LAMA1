@@ -7,12 +7,6 @@
 <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white"/>
 <br/>
 
-> 📃 Documentação 
-
-
-* <a href="https://documenter.getpostman.com/view/21020951/2s83zjtPbm">Postman</a>
-<br/>
-
 > 👨‍💻 Como rodar o projeto 
   
 * Clonar o repositório
@@ -28,7 +22,5 @@
    DB_PASSWORD = 
    DB_DATABASE = 
 ```
-
-* Rodar `npm run migrations` para criar todas as tabelas
 
 * Rodar `npm start` para ligar o servidor
