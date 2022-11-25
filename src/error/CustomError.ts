@@ -90,7 +90,7 @@ export class InvalidAuthenticatorData extends CustomError {
 
 export class InvalidLogin extends CustomError {
   constructor() {
-    super(400, "Usuário não encontrado !");
+    super(400, "Email ou senha não encontrada!");
   }
 }
 
@@ -106,6 +106,8 @@ export class NotAdmin extends CustomError {
 
   }
 }
+
+
 
 
 
