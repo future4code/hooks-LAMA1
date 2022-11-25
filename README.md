@@ -1,4 +1,4 @@
-<h1 align="center"> ⚙ Back-end</h1>
+<h2 align="center">A aplicação LAMA é uma ferramenta criada para organizar o Labenu Musical Awards, um festival que reúne várias bandas famosas para a formatura da turma</h2>
 <br/>
 
 > ⚙ Tecnologias utlizadas
