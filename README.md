@@ -17,6 +17,8 @@
 * Rodar `npm install`
   
 * Criar um arquivo `.env` na pasta raiz do projeto:
+
+* Documentação no arquivo request.rest
   
  ``` 
    PORT = 3003
