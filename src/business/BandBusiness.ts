@@ -1,24 +1,38 @@
-import { response } from "express";
-import { bandDatabase } from "../database/BandDatabase";
 import {
   CustomError,
   DuplicatedBand,
+  InvalidAuthenticatorData,
   InvalidGenre,
   InvalidName,
   InvalidResponsible,
+  InvalidToken,
   NotAdmin,
 } from "../error/CustomError";
 import { BandDTO } from "../models/Bands";
-import { IdGenerator } from "../services/IdGenerator";
+import { BandRepository } from "./BandRepository";
+import { IIdGenerator, ITokenGenerator } from "./Port";
 
-const bandDataBase = new bandDatabase();
-
-const idGenerator = new IdGenerator();
 
 export class BandBusiness {
-  async registerBand(band: BandDTO) {
+  constructor(
+    private bandDatabase: BandRepository,
+    private idGenerator: IIdGenerator,
+    private tokenGenerator: ITokenGenerator
+  ) {}
+
+  async registerBand(band: BandDTO, token: string) {
     try {
       const { name, musicGenre, responsible } = band;
+
+      if (!token) {
+        throw new InvalidToken();
+      }
+
+      const authData = this.tokenGenerator.getData(token);
+
+      if (!authData.id) {
+        throw new InvalidAuthenticatorData();
+      }
 
       if (!name) {
         throw new InvalidName();
@@ -30,7 +44,7 @@ export class BandBusiness {
         throw new InvalidResponsible();
       }
 
-      const bandas = await bandDataBase.checkDuplicateBands();
+      const bandas = await this.bandDatabase.checkDuplicateBands();
 
       for (let i = 0; i < bandas.length; i++) {
         if (bandas[i].name === name) {
@@ -38,13 +52,13 @@ export class BandBusiness {
         }
       }
 
-      const user = await bandDataBase.checkUserRole(responsible);
+      const user = await this.bandDatabase.checkUserRole(responsible);
 
       if (user.role !== "ADMIN") {
         throw new NotAdmin();
       }
 
-      const id: string = idGenerator.generate();
+      const id: string = this.idGenerator.generate();
 
       const newBand = {
         id,
@@ -53,20 +67,32 @@ export class BandBusiness {
         responsible,
       };
 
-      await bandDataBase.registerBand(newBand);
+      await this.bandDatabase.registerBand(newBand);
     } catch (error: any) {
       throw new CustomError(400, error.message);
     }
   }
 
-  async getBand(name: string) {
+  async getBand(name: string, token: string) {
     try {
-      const result = await bandDataBase.getBand(name);
+      if (!token) {
+        throw new InvalidToken();
+      }
+
+      const authData = this.tokenGenerator.getData(token);
+
+      if (!authData.id) {
+        throw new InvalidAuthenticatorData();
+      }
 
       if (!name) {
         throw new InvalidName();
       }
 
+      const result = await this.bandDatabase.getBand(name);
+
+      console.log(result)
+      console.log(name)
       return result;
     } catch (error) {
       throw new CustomError(400, error.message);
