@@ -14,6 +14,8 @@ const showBusiness = new ShowBusiness(
 );
 
 describe("Testes em criar Show", () => {
+  const token = "token";
+
   test("Teste 1: Erro para hora de início inválida", async () => {
     expect.assertions(2);
     try {
@@ -24,16 +26,35 @@ describe("Testes em criar Show", () => {
         bandId: "2",
       };
 
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6eyJpZCI6ImNjOTFlMTY4LWFkYTctNGY3Mi04NjcxLWQxM2I5MTQ3MzM5ZiIsIm5hbWUiOiJqb3JnZVRlc3RlIiwiZW1haWwiOiJqb3JnZVRlc3RlQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkcjlqbW1RLi5UT0t4TjV5em1sL0ZxT2pwN2lvODFJUGV5dXVkOXhpc2h3UXRReTdvZUhqRnkiLCJyb2xlIjoiQURNSU4ifX0sImlhdCI6MTY2OTI0MjkzMiwiZXhwIjoxNjY5MjQ2NTMyfQ.dJqwDY9M8e0_rAGBbLkwQ4KhXrHDAEHyfCMnTGcad4w";
+      await showBusiness.createShow(mock, token);
+    } catch (error: any) {
+      expect(error).toBeInstanceOf(CustomError);
+      expect(error.message).toBe(
+        "Horário inválido, digite um horário entre 08h e 23h!"
+      );
+    }
+  });
+
+  test("Teste 2: Erro para hora de termino inválida", async () => {
+    expect.assertions(2);
+    try {
+      const mock = {
+        weekDay: ShowDays.SEXTA,
+        startTime: 8,
+        endTime: 24,
+        bandId: "2",
+      };
 
       await showBusiness.createShow(mock, token);
     } catch (error: any) {
       expect(error).toBeInstanceOf(CustomError);
-      expect(error.message).toBe("Horário inválido, digite um horário entre 08h e 23h!");
+      expect(error.message).toBe(
+        "Horário inválido, digite um horário entre 08h e 23h!"
+      );
     }
   });
 
-  test("Teste 2: Erro para hora de início já agendada em outra banda", async () => {
+  test("Teste 3: Erro para hora de início já agendada em outra banda", async () => {
     expect.assertions(2);
     try {
       const mock = {
@@ -42,8 +63,6 @@ describe("Testes em criar Show", () => {
         endTime: 21,
         bandId: "2",
       };
-
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6eyJpZCI6ImNjOTFlMTY4LWFkYTctNGY3Mi04NjcxLWQxM2I5MTQ3MzM5ZiIsIm5hbWUiOiJqb3JnZVRlc3RlIiwiZW1haWwiOiJqb3JnZVRlc3RlQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkcjlqbW1RLi5UT0t4TjV5em1sL0ZxT2pwN2lvODFJUGV5dXVkOXhpc2h3UXRReTdvZUhqRnkiLCJyb2xlIjoiQURNSU4ifX0sImlhdCI6MTY2OTI0OTkwNCwiZXhwIjoxNjY5MjUzNTA0fQ.6WVGqo8updBzPR4Q_ZDBn18a7Zq7FESpIjlqfZ9mCrY";
 
       await showBusiness.createShow(mock, token);
     } catch (error: any) {
