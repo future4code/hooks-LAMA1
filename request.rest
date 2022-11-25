@@ -1,11 +1,11 @@
-// ======================================================= Requeste de Usuário
+// ======================================================= Request de Usuário
 ###
 POST http://localhost:3003/user/signup 
 Content-Type: application/json
 
 {
-    "name": "jorgeTeste",
-    "email": "jorgeTeste@hotmail.com",
+    "name": "Roberta",
+    "email": "roberta@hotmail.com",
     "password": "123456",
     "role": "admin"
 }
@@ -15,32 +15,34 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-    "email": "jorgeTeste@hotmail.com",
+    "email": "roberta@hotmail.com",
     "password": "123456"
 }
 
-// ======================================================= Requeste de Banda
+// ======================================================= Request de Banda
 
 ###
 POST http://localhost:3003/band/create
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6eyJpZCI6IjRkNGVkZjgxLTRiMWItNDFhMC1iZTc5LWNhZmIzZTYzMGZkZiIsIm5hbWUiOiJSb2JlcnRhIiwiZW1haWwiOiJyb2JlcnRhQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkL0MyTm1CMDJYbkxFZEZsVHUwNWxudVYwUFc3V0JhQmdpY1Y0VTc3MDBGYkt3ZW4ub1VkOXEiLCJyb2xlIjoiQURNSU4ifX0sImlhdCI6MTY2OTQwNDk1NiwiZXhwIjoxNjY5NDA4NTU2fQ.U--ejJR5KD2LXXaC8YKJtzyBcWF-bR0p3JGvrjx9_xs
 Content-Type: application/json
 
 {
-    "name": "Claudinha",
-    "musicGenre": "samba",
-    "responsible": "Cleito"
+    "name": "Calypsou",
+    "musicGenre": "Forró",
+    "responsible": "Roberta"
 }
 
 ###
 GET http://localhost:3003/band/return
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6eyJpZCI6IjRkNGVkZjgxLTRiMWItNDFhMC1iZTc5LWNhZmIzZTYzMGZkZiIsIm5hbWUiOiJSb2JlcnRhIiwiZW1haWwiOiJyb2JlcnRhQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkL0MyTm1CMDJYbkxFZEZsVHUwNWxudVYwUFc3V0JhQmdpY1Y0VTc3MDBGYkt3ZW4ub1VkOXEiLCJyb2xlIjoiQURNSU4ifX0sImlhdCI6MTY2OTQwNDk1NiwiZXhwIjoxNjY5NDA4NTU2fQ.U--ejJR5KD2LXXaC8YKJtzyBcWF-bR0p3JGvrjx9_xs
 Content-Type: application/json
 
 {
-    "name": "Claudinha"
+    "name": "Calypsou"
 }
 
 
-// ======================================================= Requeste de Show
+// ======================================================= Request de Show
 
 ###
 POST http://localhost:3003/show/create

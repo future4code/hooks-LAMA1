@@ -1,8 +1,9 @@
+import { BandRepository } from "../business/BandRepository";
 import { Band } from "../models/Bands";
 import BaseDatabase from "./BaseDatabase";
 
 // Método para registrar banda
-export class bandDatabase extends BaseDatabase {
+export class BandDatabase extends BaseDatabase implements BandRepository {
   public async registerBand(band: Band) {
     await BaseDatabase.connection("Lama_bands").insert({
       id: band.id,
@@ -30,7 +31,7 @@ export class bandDatabase extends BaseDatabase {
   public async getBand(name: string) {
     const result = await BaseDatabase.connection("Lama_bands")
       .select("name", "music_genre", "responsible")
-      .where({ name: "Claudinha" });
+      .where({ name });
     return result[0];
   }
 }
