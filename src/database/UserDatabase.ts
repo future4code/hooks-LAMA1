@@ -1,7 +1,8 @@
-import { LoginInputDTO, user } from "../models/User";
+import { UserRepository } from "../business/UserRepository";
+import {user} from "../models/User";
 import BaseDatabase from "./BaseDatabase";
 
-export class UserDatabase extends BaseDatabase {
+export class UserDatabase extends BaseDatabase implements UserRepository {
   public async signUp(user: user) {
     await BaseDatabase.connection("Lama_users").insert({
       id: user.id,
@@ -12,7 +13,7 @@ export class UserDatabase extends BaseDatabase {
     });
   }
 
-  public async login(email: string) {
+  public async findByEmail(email: string) {
     const result = await BaseDatabase.connection("Lama_users")
     .select() 
     .where({email});

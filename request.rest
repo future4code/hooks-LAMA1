@@ -4,8 +4,8 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-    "name": "Roberta",
-    "email": "roberta@hotmail.com",
+    "name": "Hermione Granger",
+    "email": "hermione@hotmail.com",
     "password": "123456",
     "role": "admin"
 }
@@ -15,6 +15,7 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
+
     "email": "roberta@hotmail.com",
     "password": "123456"
 }

@@ -1,4 +1,4 @@
-import { UserDatabase } from "../database/UserDatabase";
+
 import {
   CustomError,
   InvalidEmail,
@@ -7,18 +7,19 @@ import {
   InvalidPassword,
   InvalidRole,
 } from "../error/CustomError";
-import { LoginInputDTO, user, UserInputDTO, UserRole } from "../models/User";
-import { HashManager } from "../services/HashManager";
-import { IdGenerator } from "../services/IdGenerator";
-import { TokenGenerator } from "../services/TokenGenerator";
+import { LoginInputDTO, user, UserInputDTO } from "../models/User";
+import { IHashManager, IIdGenerator, ITokenGenerator } from "./Port";
+import { UserRepository } from "./UserRepository";
 
-const userDataBase = new UserDatabase();
-const tokenGenerator = new TokenGenerator();
-const hashManager = new HashManager();
 
-const idGenerator = new IdGenerator();
 
 export class UserBusiness {
+  constructor(
+    private userDatabase: UserRepository,
+    private hashGenerator: IHashManager,
+    private idGenerator:IIdGenerator,
+    private tokenGenerator: ITokenGenerator
+  ){}
   async signUp(user: UserInputDTO) {
     try {
       const { name, email, password, role } = user;
@@ -37,8 +38,8 @@ export class UserBusiness {
         throw new InvalidRole();
       }
 
-      const id: string = idGenerator.generate();
-      const hashPassword = await hashManager.hash(password)
+      const id: string = this.idGenerator.generate();
+      const hashPassword = await this.hashGenerator.hash(password)
 
       const newUser: user = {
         id,
@@ -48,8 +49,8 @@ export class UserBusiness {
         role,
       };
 
-      await userDataBase.signUp(newUser);
-      const token = tokenGenerator.generateToken({ id });
+      await this.userDatabase.signUp(newUser);
+      const token = this.tokenGenerator.generateToken({ id });
  
       return token;
     } catch (error: any) {
@@ -68,8 +69,8 @@ export class UserBusiness {
         throw new InvalidPassword();
       }
 
-      const idUser = await userDataBase.login(email);
-      const isValidPassaword = await hashManager.compare(
+      const idUser = await this.userDatabase.findByEmail(email);
+      const isValidPassaword = await this.hashGenerator.compare(
         password,
         idUser.password
       )
@@ -77,7 +78,7 @@ export class UserBusiness {
         throw new InvalidLogin();
       }
 
-        const token = tokenGenerator.generateToken({id: idUser});
+        const token = this.tokenGenerator.generateToken({id: idUser.id});
         return token
      
     } catch (error: any) {
