@@ -2,6 +2,14 @@
 <h3 align="center">A aplicação LAMA é uma ferramenta criada para organizar o Labenu Musical Awards, um festival que reúne várias bandas famosas para a formatura da turma.</h3>
 <br/>
 
+>  💻 Time
+
+* [Adriane](https://github.com/adrianegonaves)
+* [Diogo](https://github.com/DiogoB0mfim)
+* [Max](https://github.com/maxranholi) 
+
+<br/>
+
 > ⚙ Tecnologias utlizadas
 <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/>
 <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"/>
@@ -31,8 +39,3 @@
 
 * Rodar `npm start` para ligar o servidor
 
->  💻 Time
-
-* [Adriane](https://github.com/adrianegonaves)
-* [Diogo](https://github.com/DiogoB0mfim)
-* [Max](https://github.com/maxranholi) 
