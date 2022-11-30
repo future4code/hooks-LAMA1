@@ -1,0 +1,64 @@
+// ======================================================= Request de Usuário
+###
+POST http://localhost:3003/user/signup 
+Content-Type: application/json
+
+{
+    "name": "Hermione Granger",
+    "email": "hermione@hotmail.com",
+    "password": "123456",
+    "role": "admin"
+}
+
+###
+POST http://localhost:3003/user/login 
+Content-Type: application/json
+
+{
+
+    "email": "roberta@hotmail.com",
+    "password": "123456"
+}
+
+// ======================================================= Request de Banda
+
+###
+POST http://localhost:3003/band/create
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6eyJpZCI6IjRkNGVkZjgxLTRiMWItNDFhMC1iZTc5LWNhZmIzZTYzMGZkZiIsIm5hbWUiOiJSb2JlcnRhIiwiZW1haWwiOiJyb2JlcnRhQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkL0MyTm1CMDJYbkxFZEZsVHUwNWxudVYwUFc3V0JhQmdpY1Y0VTc3MDBGYkt3ZW4ub1VkOXEiLCJyb2xlIjoiQURNSU4ifX0sImlhdCI6MTY2OTQwNDk1NiwiZXhwIjoxNjY5NDA4NTU2fQ.U--ejJR5KD2LXXaC8YKJtzyBcWF-bR0p3JGvrjx9_xs
+Content-Type: application/json
+
+{
+    "name": "Calypsou",
+    "musicGenre": "Forró",
+    "responsible": "Roberta"
+}
+
+###
+GET http://localhost:3003/band/return
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6eyJpZCI6IjRkNGVkZjgxLTRiMWItNDFhMC1iZTc5LWNhZmIzZTYzMGZkZiIsIm5hbWUiOiJSb2JlcnRhIiwiZW1haWwiOiJyb2JlcnRhQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkL0MyTm1CMDJYbkxFZEZsVHUwNWxudVYwUFc3V0JhQmdpY1Y0VTc3MDBGYkt3ZW4ub1VkOXEiLCJyb2xlIjoiQURNSU4ifX0sImlhdCI6MTY2OTQwNDk1NiwiZXhwIjoxNjY5NDA4NTU2fQ.U--ejJR5KD2LXXaC8YKJtzyBcWF-bR0p3JGvrjx9_xs
+Content-Type: application/json
+
+{
+    "name": "Calypsou"
+}
+
+
+// ======================================================= Request de Show
+
+###
+POST http://localhost:3003/show/create
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6eyJpZCI6ImNjOTFlMTY4LWFkYTctNGY3Mi04NjcxLWQxM2I5MTQ3MzM5ZiIsIm5hbWUiOiJqb3JnZVRlc3RlIiwiZW1haWwiOiJqb3JnZVRlc3RlQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkcjlqbW1RLi5UT0t4TjV5em1sL0ZxT2pwN2lvODFJUGV5dXVkOXhpc2h3UXRReTdvZUhqRnkiLCJyb2xlIjoiQURNSU4ifX0sImlhdCI6MTY2OTI0OTkwNCwiZXhwIjoxNjY5MjUzNTA0fQ.6WVGqo8updBzPR4Q_ZDBn18a7Zq7FESpIjlqfZ9mCrY
+Content-Type: application/json
+
+{
+    "weekDay" : "SEXTA", 
+    "startTime" : 12, 
+    "endTime" : 23, 
+    "bandId" : "2"
+}
+
+###
+GET http://localhost:3003/show/get/SEXTA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6eyJpZCI6ImNjOTFlMTY4LWFkYTctNGY3Mi04NjcxLWQxM2I5MTQ3MzM5ZiIsIm5hbWUiOiJqb3JnZVRlc3RlIiwiZW1haWwiOiJqb3JnZVRlc3RlQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkcjlqbW1RLi5UT0t4TjV5em1sL0ZxT2pwN2lvODFJUGV5dXVkOXhpc2h3UXRReTdvZUhqRnkiLCJyb2xlIjoiQURNSU4ifX0sImlhdCI6MTY2OTI0OTkwNCwiZXhwIjoxNjY5MjUzNTA0fQ.6WVGqo8updBzPR4Q_ZDBn18a7Zq7FESpIjlqfZ9mCrY
+
+
